@@ -143,7 +143,7 @@ export default function EntryForms({
                 className={cn(
                   "px-3 py-1.5 text-sm font-medium rounded-sm transition-all flex items-center justify-center",
                   "text-white hover:bg-gray-500/70",
-                  `data-[state=active]:${accentBgClass} data-[state=active]:text-black data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:hover:brightness-110`,
+                  "data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-500 data-[state=active]:to-yellow-500 data-[state=active]:text-black data-[state=active]:font-bold data-[state=active]:shadow-lg data-[state=active]:shadow-amber-500/30 data-[state=active]:border-amber-400",
                 )}
               >
                 <tab.icon className="w-4 h-4 mr-2 inline-block" />
@@ -173,7 +173,7 @@ export default function EntryForms({
                   onChange={(e) => setWeightValue(e.target.value)}
                   placeholder="e.g., 70.5"
                   required
-                  className="bg-gray-800/50 border-amber-500/30 text-white placeholder:text-gray-400 focus:border-amber-400"
+                  className="bg-gray-600/70 border-amber-500/50 text-white placeholder:text-gray-300 focus:border-amber-400 focus:bg-gray-500/80 focus:shadow-lg focus:shadow-amber-500/20"
                 />
               </div>
               <Button

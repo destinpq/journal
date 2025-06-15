@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
-import { Scale, Dumbbell, BookText, TrendingUp } from "lucide-react"
+import { Scale, Dumbbell, BookText, TrendingUp, Settings } from "lucide-react"
 import ProgressChart from "@/components/progress-chart"
 import EntryForms from "@/components/entry-forms"
 import EntryList from "@/components/entry-list"
@@ -9,6 +9,9 @@ import { LoadingSkeleton } from "@/components/loading-skeleton"
 import { ErrorBoundary, FirebaseErrorDisplay } from "@/components/error-boundary"
 import { useFirebaseData } from "@/hooks/useFirebaseData"
 import { format } from "date-fns"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const ACCENT_COLOR_CLASS = "text-amber-400"
 const ACCENT_BG_CLASS = "bg-gradient-to-r from-amber-500 to-yellow-500"
@@ -62,7 +65,20 @@ export default function JourneyPage() {
               <TrendingUp className="w-6 h-6 md:w-10 md:h-10 mr-2 md:mr-3 text-amber-400" />
               My Journey
             </h1>
-            <p className="text-amber-300 hidden md:block text-sm md:text-base font-medium">Track. Reflect. Progress.</p>
+            <div className="flex items-center gap-4">
+              <div className="text-amber-300 text-sm md:text-base">
+                Welcome back! ✨
+              </div>
+              <Link href="/edit">
+                <Button 
+                  variant="outline" 
+                  className="border-amber-500/50 text-amber-400 hover:bg-amber-500/10 hover:border-amber-400/70"
+                >
+                  <Settings className="w-4 h-4 mr-2" />
+                  Edit Data
+                </Button>
+              </Link>
+            </div>
           </div>
         </header>
 

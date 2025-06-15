@@ -154,25 +154,26 @@ export const subscribeToJournalEntries = (callback: (entries: JournalEntry[]) =>
   });
 };
 
-// Generic delete function
-export const deleteEntry = async (collection: string, id: string) => {
-  try {
-    await deleteDoc(doc(db, collection, id));
-  } catch (error) {
-    console.error(`Error deleting entry from ${collection}:`, error);
-    throw error;
-  }
+// Add an entry to any collection
+export const addEntry = async (collectionName: string, data: any) => {
+  const docRef = await addDoc(collection(db, collectionName), {
+    ...data,
+    date: new Date(data.date) // Ensure date is a Date object
+  });
+  return docRef.id;
 };
 
-// Generic update function
-export const updateEntry = async (collection: string, id: string, data: any) => {
-  try {
-    await updateDoc(doc(db, collection, id), {
-      ...data,
-      updatedAt: Timestamp.now()
-    });
-  } catch (error) {
-    console.error(`Error updating entry in ${collection}:`, error);
-    throw error;
-  }
+// Update an entry in any collection
+export const updateEntry = async (collectionName: string, id: string, data: any) => {
+  const docRef = doc(db, collectionName, id);
+  await updateDoc(docRef, {
+    ...data,
+    date: new Date(data.date) // Ensure date is a Date object
+  });
+};
+
+// Delete an entry from any collection
+export const deleteEntry = async (collectionName: string, id: string) => {
+  const docRef = doc(db, collectionName, id);
+  await deleteDoc(docRef);
 }; 
